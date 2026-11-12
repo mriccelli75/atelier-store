@@ -1,0 +1,27 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1793725246118,
+      "tag": "0000_productive_abomination",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1793831418652,
+      "tag": "0001_striped_agent_brand",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1794483548339,
+      "tag": "0002_bag_orders_auth",
+      "breakpoints": true
+    }
+  ]
+}
