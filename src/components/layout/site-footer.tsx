@@ -18,6 +18,7 @@ const columns = [
       { label: "Boutiques", href: "/boutiques" },
       { label: "Careers", href: "/careers" },
       { label: "Sustainability", href: "/sustainability" },
+      { label: "Design system", href: "/design-system" },
     ],
   },
   {

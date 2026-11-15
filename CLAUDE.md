@@ -43,9 +43,9 @@ Copy `.env.example` to `.env` and fill in `DATABASE_URL` (Neon Postgres), `BETTE
 
 ## Design system
 
-All tokens and primitives live in `src/app/globals.css` (Tailwind v4, CSS-first; there is no `tailwind.config`). The look is monochrome luxury retail: photography supplies the colour, and the UI stays quiet.
+All tokens and primitives live in `src/app/globals.css` and are shown on the `/design-system` page (`src/app/design-system/page.tsx`, noindex); update that page when you add or change a token (Tailwind v4, CSS-first; there is no `tailwind.config`). The look is monochrome luxury retail: photography supplies the colour, and the UI stays quiet.
 
-- **Colours:** Tailwind's default palette is reset (`--color-*: initial`), so `zinc-*`, `gray-*`, etc. don't exist. Use the semantic tokens: `ink`, `ink-soft`, `ink-muted`, `ink-faint`, `paper`, `stone`, `stone-deep`, `line`, `line-strong`, `overlay`, `sale`, `success`. The site is light-only.
+- **Colours:** Tailwind's default palette is reset (`--color-*: initial`), so `zinc-*`, `gray-*`, etc. don't exist. Use the semantic tokens: `ink`, `ink-soft`, `ink-muted`, `ink-faint`, `paper`, `stone`, `stone-deep`, `line`, `line-strong`, `overlay`, `sale`, `success`, `accent`. `accent` (deep claret) is a signature mark for one editorial detail per view, never for controls, prices or states. The site is light-only.
 - **Type:** `font-sans` (Geist) for UI and body text, `font-display` (Cormorant Garamond) for editorial headings. h1–h3 default to the display font. Sizes: `text-label`, `text-caption`, `text-body-sm`, `text-body`, `text-lead`, plus fluid `text-heading-sm`/`text-heading`/`text-heading-lg`/`text-display`. Use only weights 400/500. Uppercase tracked labels use `text-eyebrow`.
 - **Geometry:** border radius is reset to zero, so `rounded-*` does nothing except `rounded-full` (for swatches only). Borders are 1px hairlines (`border-line`, `hairline`, `divider`).
 - **Layout primitives:** `container-page` (1440px max, fluid `gutter`), `container-wide`, `container-prose`, `section` (fluid vertical rhythm), `product-grid` (2→3→4 columns), `product-media` (3:4 frame on stone), `hero-media` (4:5 → 16:9), `header-bar`. Spacing tokens: `p-gutter`, `py-section`, `h-header`.
