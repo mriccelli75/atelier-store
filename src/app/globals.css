@@ -34,6 +34,10 @@
   --color-overlay: rgb(0 0 0 / 0.4); /* drawer + modal scrim */
   --color-sale: #9b1c1c; /* reduced price, error text */
   --color-success: #1d5c3a; /* confirmation messages */
+  /* Signature accent: a deep claret used for one editorial mark per view
+   * (eyebrow, quote rule, campaign word). Never for buttons, links, prices or
+   * states; those stay ink, and red for errors stays `sale`. */
+  --color-accent: #5a1220;
   --color-white: #ffffff;
   --color-black: #000000;
   --color-transparent: transparent;
