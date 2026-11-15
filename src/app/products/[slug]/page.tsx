@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFoundMetadata } from "@/components/not-found-view";
 import { ProductCard } from "@/components/product-card";
 import { ProductGallery } from "@/components/product/product-gallery";
+import { ProductUnavailable } from "@/components/product/product-unavailable";
 import { PurchasePanel } from "@/components/product/purchase-panel";
 import { StockStatus } from "@/components/product/stock-status";
 import {
@@ -22,7 +23,7 @@ export async function generateMetadata({
 }: PageProps<"/products/[slug]">): Promise<Metadata> {
   const { slug } = await params;
   const product = await getProduct(slug);
-  if (!product) return {};
+  if (!product) return { ...notFoundMetadata, title: "Piece not available" };
   return {
     title: `${product.name} in ${product.material.toLowerCase()}`,
     description: product.description,
@@ -34,7 +35,7 @@ export default async function ProductPage({
 }: PageProps<"/products/[slug]">) {
   const { slug } = await params;
   const product = await getProduct(slug);
-  if (!product) notFound();
+  if (!product) return <ProductUnavailable />;
 
   const category = product.category.name;
   const related = await getRelatedProducts(product.slug);

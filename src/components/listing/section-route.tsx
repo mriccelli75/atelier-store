@@ -3,10 +3,10 @@
 // /<section>/[category], prerendering one page per filter.
 
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
 import { SectionListing } from "@/components/listing/section-listing";
+import { NotFoundView, notFoundMetadata } from "@/components/not-found-view";
 import { getSectionProducts } from "@/db/queries";
-import { getSectionFilter, type Section } from "@/lib/departments";
+import { getSectionFilter, sectionHref, type Section } from "@/lib/departments";
 
 type FilterParams = { params: Promise<{ category: string }> };
 
@@ -34,13 +34,21 @@ export function sectionFilterRoute(section: Section) {
 
   async function generateMetadata({ params }: FilterParams): Promise<Metadata> {
     const filter = getSectionFilter(section, (await params).category);
-    if (!filter) return {};
+    if (!filter) return notFoundMetadata;
     return { title: filter.title, description: section.description };
   }
 
   async function SectionFilterPage({ params }: FilterParams) {
     const filter = getSectionFilter(section, (await params).category);
-    if (!filter) notFound();
+    if (!filter) {
+      return (
+        <NotFoundView
+          title="We can’t find that page"
+          description={`This part of ${section.label.toLowerCase()} doesn’t exist, or the link may be out of date.`}
+          action={{ label: `Shop all ${section.label.toLowerCase()}`, href: sectionHref(section) }}
+        />
+      );
+    }
 
     const products = await getSectionProducts({
       categorySlugs: filter.categorySlug ? [filter.categorySlug] : section.categorySlugs,
