@@ -108,21 +108,6 @@ export const craft = {
   ],
 };
 
-export const services = [
-  {
-    title: "Complimentary delivery",
-    body: "Free standard shipping on every order, packed in our signature box.",
-  },
-  {
-    title: "30-day returns",
-    body: "Return unworn pieces within 30 days by post or in any boutique.",
-  },
-  {
-    title: "Book an appointment",
-    body: "Try pieces on with a stylist in store or over a video call.",
-  },
-];
-
 export type NavItem = {
   label: string;
   href: string;

@@ -2,15 +2,16 @@ import Image from "next/image";
 import Link from "next/link";
 import { Hero } from "@/components/home/hero";
 import { ProductCard } from "@/components/product-card";
+import { ServiceCardRow } from "@/components/services/service-card";
 import { getCategories, getProducts } from "@/db/queries";
 import {
   cognacEdit,
   craft,
   newArrivalSlugs,
-  services,
   tailoring,
 } from "@/lib/catalog";
 import { categoryHref } from "@/lib/products";
+import { servicePromises, services, servicesIntro } from "@/lib/services";
 
 function SectionHeading({
   id,
@@ -200,17 +201,25 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Client services */}
-      <section aria-labelledby="services" className="container-page py-section-sm">
-        <h2 id="services" className="sr-only">
-          Client services
-        </h2>
-        <ul className="grid gap-8 md:grid-cols-3 md:gap-6">
-          {services.map((service) => (
-            <li key={service.title} className="md:text-center">
-              <h3 className="text-heading-sm">{service.title}</h3>
-              <p className="mx-auto mt-2 max-w-[32ch] text-body-sm text-ink-muted">
-                {service.body}
+      {/* Services: image-led cards (swipe on phones), then delivery promises */}
+      <section aria-labelledby="services" className="section">
+        <div className="container-page mb-8 text-center lg:mb-12">
+          <h2 id="services" className="text-heading">
+            {servicesIntro.title}
+          </h2>
+          <p className="mx-auto mt-3 max-w-[44ch] text-body text-ink-muted">
+            {servicesIntro.description}
+          </p>
+        </div>
+
+        <ServiceCardRow items={services} />
+
+        <ul className="container-page mt-section-sm grid gap-6 sm:grid-cols-2">
+          {servicePromises.map((promise) => (
+            <li key={promise.title} className="divider pt-5 text-center">
+              <h3 className="text-eyebrow">{promise.title}</h3>
+              <p className="mx-auto mt-2 max-w-[40ch] text-body-sm text-ink-muted">
+                {promise.body}
               </p>
             </li>
           ))}

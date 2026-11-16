@@ -136,7 +136,7 @@ export default async function ProductPage({
 
             <p className="mt-6 text-body-sm text-ink-muted">
               Questions about fit or materials?{" "}
-              <Link href="/appointments" className="link-underline text-ink">
+              <Link href="/services/appointments" className="link-underline text-ink">
                 Book an appointment with a stylist
               </Link>
             </p>
