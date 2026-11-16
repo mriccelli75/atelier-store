@@ -148,7 +148,7 @@ export function MenuDrawer({ items }: { items: NavItem[] }) {
                 <Link href="/account" onClick={close} className="hover:text-ink-muted">
                   Sign in or create an account
                 </Link>
-                <Link href="/appointments" onClick={close} className="hover:text-ink-muted">
+                <Link href="/services/appointments" onClick={close} className="hover:text-ink-muted">
                   Book an appointment
                 </Link>
               </div>

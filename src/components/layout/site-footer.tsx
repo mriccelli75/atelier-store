@@ -8,7 +8,8 @@ const columns = [
       { label: "Contact us", href: "/contact" },
       { label: "Shipping", href: "/help/shipping" },
       { label: "Returns and exchanges", href: "/help/returns" },
-      { label: "Repairs", href: "/help/repairs" },
+      { label: "Services", href: "/services" },
+      { label: "Repairs and care", href: "/services/repairs" },
     ],
   },
   {

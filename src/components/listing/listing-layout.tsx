@@ -1,9 +1,9 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { Breadcrumbs, type Crumb } from "@/components/breadcrumbs";
 import { ProductCard } from "@/components/product-card";
 import type { Product } from "@/lib/products";
 
-export type Crumb = { label: string; href?: string };
 export type ListingTab = { label: string; href: string; active: boolean };
 
 type Props = {
@@ -37,31 +37,10 @@ export function ListingLayout({
   empty,
 }: Props) {
   const count = `${products.length} ${products.length === 1 ? "piece" : "pieces"}`;
-  const trail: Crumb[] = [{ label: "Home", href: "/" }, ...breadcrumbs];
 
   return (
     <main>
-      <nav aria-label="Breadcrumb" className="container-page py-4">
-        <ol className="flex flex-wrap gap-x-2 text-caption text-ink-muted">
-          {trail.map((crumb, i) => {
-            const current = i === trail.length - 1;
-            return (
-              <li key={crumb.label} className="flex gap-x-2">
-                {i > 0 && <span aria-hidden="true">/</span>}
-                {current || !crumb.href ? (
-                  <span aria-current={current ? "page" : undefined} className="text-ink">
-                    {crumb.label}
-                  </span>
-                ) : (
-                  <Link href={crumb.href} className="hover:text-ink">
-                    {crumb.label}
-                  </Link>
-                )}
-              </li>
-            );
-          })}
-        </ol>
-      </nav>
+      <Breadcrumbs crumbs={breadcrumbs} />
 
       <header className="container-page pt-6 pb-8 text-center lg:pt-10 lg:pb-12">
         {eyebrow && <p className="text-eyebrow mb-4 text-ink-muted">{eyebrow}</p>}
