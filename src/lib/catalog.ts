@@ -5,6 +5,7 @@
 import {
   accessoriesSection,
   bagsSection,
+  jewellerySection,
   menSection,
   sectionHref,
   shoesSection,
@@ -135,4 +136,5 @@ export const navigation: NavItem[] = [
   sectionNavItem(bagsSection),
   sectionNavItem(shoesSection),
   sectionNavItem(accessoriesSection),
+  sectionNavItem(jewellerySection),
 ];

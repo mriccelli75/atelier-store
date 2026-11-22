@@ -51,7 +51,9 @@ export function sectionFilterRoute(section: Section) {
     }
 
     const products = await getSectionProducts({
-      categorySlugs: filter.categorySlug ? [filter.categorySlug] : section.categorySlugs,
+      categorySlugs:
+        filter.categorySlugs ??
+        (filter.categorySlug ? [filter.categorySlug] : section.categorySlugs),
       department: filter.department ?? section.department,
       newOnly: filter.newOnly,
     });

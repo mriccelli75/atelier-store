@@ -1,6 +1,7 @@
 // Shop sections and the filters each one offers. Department sections (Women,
 // Men) list one department's products across several categories; category
-// sections (Bags, Shoes, Accessories) list categories across every department.
+// sections (Bags, Shoes, Accessories, Jewellery) list categories across every
+// department.
 // Products are assigned to a department by `products.department`; unisex
 // products show up in every department.
 
@@ -13,10 +14,15 @@ export type SectionFilter = {
   /** Heading on the listing page. */
   title: string;
   categorySlug?: string;
+  /** Narrows to several categories at once, e.g. all jewellery in /women. */
+  categorySlugs?: string[];
   /** Narrows a category section to one department (plus unisex). */
   department?: ShopDepartment;
   newOnly?: boolean;
 };
+
+/** Jewellery is split into one category per type, as the filters are. */
+export const jewelleryCategorySlugs = ["rings", "necklaces", "bracelets", "earrings"];
 
 export type ShopDepartment = Exclude<Department, "unisex">;
 
@@ -36,8 +42,8 @@ export const menSection: Section = {
   slug: "men",
   label: "Men",
   description:
-    "Shoes built to be resoled and leather goods stitched by hand, made to last for years of daily wear.",
-  categorySlugs: ["shoes", "small-leather-goods"],
+    "Shoes built to be resoled, leather goods stitched by hand and jewellery cast in gold and silver, made to last for years of daily wear.",
+  categorySlugs: ["shoes", "small-leather-goods", ...jewelleryCategorySlugs],
   filters: [
     { slug: "new", label: "New in", title: "New in men’s", newOnly: true },
     { slug: "shoes", label: "Shoes", title: "Men’s shoes", categorySlug: "shoes" },
@@ -47,6 +53,12 @@ export const menSection: Section = {
       title: "Men’s small leather goods",
       categorySlug: "small-leather-goods",
     },
+    {
+      slug: "jewellery",
+      label: "Jewellery",
+      title: "Men’s jewellery",
+      categorySlugs: jewelleryCategorySlugs,
+    },
   ],
 };
 
@@ -55,8 +67,8 @@ export const womenSection: Section = {
   slug: "women",
   label: "Women",
   description:
-    "Bags cut from a single hide and stitched by hand, with shoes and eyewear to wear alongside them.",
-  categorySlugs: ["bags", "shoes", "small-leather-goods", "eyewear"],
+    "Bags cut from a single hide and stitched by hand, with shoes, eyewear and jewellery to wear alongside them.",
+  categorySlugs: ["bags", "shoes", "small-leather-goods", "eyewear", ...jewelleryCategorySlugs],
   filters: [
     { slug: "new", label: "New in", title: "New in women’s", newOnly: true },
     { slug: "bags", label: "Bags", title: "Women’s bags", categorySlug: "bags" },
@@ -68,6 +80,12 @@ export const womenSection: Section = {
       categorySlug: "small-leather-goods",
     },
     { slug: "eyewear", label: "Eyewear", title: "Women’s eyewear", categorySlug: "eyewear" },
+    {
+      slug: "jewellery",
+      label: "Jewellery",
+      title: "Women’s jewellery",
+      categorySlugs: jewelleryCategorySlugs,
+    },
   ],
 };
 
@@ -113,8 +131,25 @@ export const accessoriesSection: Section = {
   ],
 };
 
+export const jewellerySection: Section = {
+  slug: "jewellery",
+  label: "Jewellery",
+  description:
+    "Rings, chains and hoops in 18k gold, gold vermeil and sterling silver, cast and hand-polished in small runs.",
+  categorySlugs: jewelleryCategorySlugs,
+  filters: [
+    { slug: "new", label: "New in", title: "New in jewellery", newOnly: true },
+    { slug: "rings", label: "Rings", title: "Rings", categorySlug: "rings" },
+    { slug: "necklaces", label: "Necklaces", title: "Necklaces", categorySlug: "necklaces" },
+    { slug: "bracelets", label: "Bracelets", title: "Bracelets", categorySlug: "bracelets" },
+    { slug: "earrings", label: "Earrings", title: "Earrings", categorySlug: "earrings" },
+    { slug: "women", label: "Women", title: "Women’s jewellery", department: "women" },
+    { slug: "men", label: "Men", title: "Men’s jewellery", department: "men" },
+  ],
+};
+
 /** Sections that own a product category, for linking to a category by slug. */
-const categorySections = [bagsSection, shoesSection, accessoriesSection];
+const categorySections = [bagsSection, shoesSection, accessoriesSection, jewellerySection];
 
 export const sectionHref = (section: Section, filter?: SectionFilter) =>
   filter ? `/${section.slug}/${filter.slug}` : `/${section.slug}`;
