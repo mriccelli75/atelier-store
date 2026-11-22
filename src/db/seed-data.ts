@@ -41,6 +41,34 @@ export const seedCategories: SeedCategory[] = [
     imageSrc: unsplash("1567473810954-507d59716c25"),
     imageAlt: "Gold-framed aviator sunglasses",
   },
+  {
+    slug: "rings",
+    name: "Rings",
+    sortOrder: 5,
+    imageSrc: unsplash("1708222169835-6329be77bee6"),
+    imageAlt: "Gold ring with an open oval on a white plinth",
+  },
+  {
+    slug: "necklaces",
+    name: "Necklaces",
+    sortOrder: 6,
+    imageSrc: unsplash("1783541507490-edb026e2a961"),
+    imageAlt: "Gold oval pendant necklace on sandstone",
+  },
+  {
+    slug: "bracelets",
+    name: "Bracelets",
+    sortOrder: 7,
+    imageSrc: unsplash("1602173574767-37ac01994b2a"),
+    imageAlt: "Gold oval link bracelet on an open magazine",
+  },
+  {
+    slug: "earrings",
+    name: "Earrings",
+    sortOrder: 8,
+    imageSrc: unsplash("1708220040824-b273dd0a17cc"),
+    imageAlt: "Chunky gold hoop earrings on white display steps",
+  },
 ];
 
 const photo = (id: string, crop?: { x: number; y: number; zoom: number }) => {
@@ -80,6 +108,19 @@ const mensShoeSizes = (soldOut: string[] = []) =>
 
 const shoeCare = (cream: string) =>
   `Use a shoe tree between wears. Polish with a ${cream} cream and buff with a soft cloth.`;
+
+/** EU ring sizes (inner circumference in mm). */
+const ringSizes = (soldOut: string[] = []) =>
+  ["48", "50", "52", "54", "56", "58", "60"].map((label) => ({
+    label,
+    available: !soldOut.includes(label),
+  }));
+
+const goldCare =
+  "Take off before swimming or bathing, and put on after perfume. Polish with the cloth provided and store in the pouch. Our boutiques clean and polish Atelier jewellery free of charge.";
+
+const silverCare =
+  "Silver darkens with time. Polish with the cloth provided, and store in the pouch, away from air and moisture. Our boutiques clean and polish Atelier jewellery free of charge.";
 
 const leatherCare =
   "Wipe with a soft dry cloth. Keep away from direct heat and prolonged sunlight, and store in the dust bag provided. Our boutiques recondition Atelier leather free of charge.";
@@ -694,5 +735,392 @@ export const seedProducts: SeedProduct[] = [
       ],
     ),
     stockQuantity: 10,
+  },
+  // ---- Jewelry ----
+  {
+    slug: "oval-link-ring-gold",
+    name: "Oval link ring",
+    categorySlug: "rings",
+    department: "women",
+    material: "Gold vermeil",
+    priceCents: 78000,
+    description:
+      "An open oval set on a slim band, drawn from the links of our chain bracelet. Cast in sterling silver and finished in a thick layer of 18k gold.",
+    details: [
+      "18k gold vermeil on sterling silver",
+      "Oval measures 2.2 × 1.2 cm",
+      "Band width 1.5 mm",
+      "Hand-polished",
+      "Made in Italy",
+    ],
+    care: goldCare,
+    images: gallery(
+      "1708222169835-6329be77bee6",
+      "Gold ring with an open oval on a white plinth",
+      [
+        { x: 0.44, y: 0.42, zoom: 2.6, alt: "Close-up of the polished oval" },
+        { x: 0.36, y: 0.52, zoom: 2.8, alt: "Close-up of the slim band" },
+      ],
+    ),
+    stockQuantity: 10,
+    sizes: ringSizes(),
+    isNew: true,
+  },
+  {
+    slug: "emerald-cut-solitaire",
+    name: "Emerald-cut solitaire ring",
+    categorySlug: "rings",
+    department: "women",
+    material: "18k yellow gold and diamonds",
+    priceCents: 680000,
+    description:
+      "A 1-carat emerald-cut diamond held in four claws, on a band set with pavé diamonds to the halfway point.",
+    details: [
+      "18k yellow gold",
+      "1.0 ct emerald-cut diamond, G colour, VS1 clarity",
+      "0.3 ct pavé-set round diamonds",
+      "Band width 2 mm",
+      "Comes with a diamond certificate",
+      "Made in Italy",
+    ],
+    care: goldCare,
+    images: gallery(
+      "1598560917807-1bae44bd2be8",
+      "Yellow gold ring with an emerald-cut diamond and a pavé band",
+      [
+        { x: 0.52, y: 0.28, zoom: 2.6, alt: "Close-up of the emerald-cut diamond in its claws" },
+        { x: 0.35, y: 0.55, zoom: 2.6, alt: "Close-up of the pavé-set band" },
+      ],
+    ),
+    stockQuantity: 2,
+    sizes: ringSizes(["48", "60"]),
+  },
+  {
+    slug: "onyx-signet-ring-silver",
+    name: "Onyx signet ring",
+    categorySlug: "rings",
+    department: "men",
+    material: "Sterling silver and black onyx",
+    priceCents: 52000,
+    description:
+      "A substantial signet with a polished oval of black onyx, framed in a fluted bezel and set on engraved, oxidised shoulders.",
+    details: [
+      "925 sterling silver, oxidised",
+      "Black onyx, 1.6 × 1.2 cm",
+      "Fluted bezel and engraved shoulders",
+      "Made in Italy",
+    ],
+    care: silverCare,
+    images: gallery(
+      "1778759335295-b332b4eaac15",
+      "Sterling silver signet ring with a black onyx stone resting on a rock",
+      [
+        { x: 0.4, y: 0.5, zoom: 2.2, alt: "Close-up of the polished onyx" },
+        { x: 0.62, y: 0.55, zoom: 2.4, alt: "Close-up of the engraved shoulder" },
+      ],
+    ),
+    stockQuantity: 10,
+    sizes: ringSizes(["48"]),
+    isNew: true,
+  },
+  {
+    slug: "classic-band-gold",
+    name: "Classic band ring",
+    categorySlug: "rings",
+    department: "unisex",
+    material: "18k yellow gold",
+    priceCents: 110000,
+    description:
+      "A 4 mm band with a softly domed outer face and a comfort-fit interior, made to be worn every day.",
+    details: [
+      "18k yellow gold",
+      "Band width 4 mm",
+      "Comfort-fit interior",
+      "Made in Italy",
+    ],
+    care: goldCare,
+    images: gallery(
+      "1622398925373-3f91b1e275f5",
+      "Two yellow gold band rings resting on cream fabric",
+      [
+        { x: 0.35, y: 0.55, zoom: 2.2, alt: "Close-up of the domed outer face" },
+        { x: 0.62, y: 0.4, zoom: 2.4, alt: "Close-up of the polished edge" },
+      ],
+    ),
+    stockQuantity: 10,
+    sizes: ringSizes(),
+  },
+  {
+    slug: "oval-pendant-necklace-gold",
+    name: "Oval pendant necklace",
+    categorySlug: "necklaces",
+    department: "women",
+    material: "Gold vermeil",
+    priceCents: 89000,
+    description:
+      "A hollow oval pendant on a supple snake chain, part of the same link family as our oval ring and bracelet.",
+    details: [
+      "18k gold vermeil on sterling silver",
+      "Pendant 2.8 × 2.2 cm",
+      "Snake chain, 45 cm with a 5 cm extender",
+      "Lobster clasp",
+      "Made in Italy",
+    ],
+    care: goldCare,
+    images: gallery(
+      "1783541507490-edb026e2a961",
+      "Gold necklace with a hollow oval pendant on warm sandstone",
+      [
+        { x: 0.58, y: 0.52, zoom: 2.2, alt: "Close-up of the oval pendant" },
+        { x: 0.32, y: 0.22, zoom: 2.4, alt: "Close-up of the snake chain" },
+      ],
+    ),
+    stockQuantity: 10,
+    isNew: true,
+  },
+  {
+    slug: "double-link-chain-gold",
+    name: "Double-link chain necklace",
+    categorySlug: "necklaces",
+    department: "men",
+    material: "18k yellow gold",
+    priceCents: 320000,
+    description:
+      "Interlocking double links with a weighty, fluid drape. Each link is formed and soldered by hand.",
+    details: [
+      "18k yellow gold",
+      "Link width 5 mm",
+      "Length 55 cm",
+      "Box clasp with safety catch",
+      "Made in Italy",
+    ],
+    care: goldCare,
+    images: gallery(
+      "1771734065116-61e16b353ded",
+      "Gold double-link chain against a black background",
+      [
+        { x: 0.3, y: 0.5, zoom: 2.4, alt: "Close-up of the interlocking links" },
+        { x: 0.6, y: 0.85, zoom: 2.4, alt: "Close-up of the chain's curve" },
+      ],
+    ),
+    stockQuantity: 3,
+  },
+  {
+    slug: "heart-pendant-necklace-silver",
+    name: "Heart pendant necklace",
+    categorySlug: "necklaces",
+    department: "women",
+    material: "Sterling silver",
+    priceCents: 36000,
+    description:
+      "A flat, polished heart on a fine paperclip chain.",
+    details: [
+      "925 sterling silver",
+      "Heart 1.8 × 1.6 cm",
+      "Paperclip chain, 42 cm with a 3 cm extender",
+      "Lobster clasp",
+      "Made in Italy",
+    ],
+    care: silverCare,
+    images: gallery(
+      "1676301086281-e65f219c7f22",
+      "Sterling silver heart pendant on a paperclip chain on a pale grey surface",
+      [
+        { x: 0.6, y: 0.58, zoom: 2.4, alt: "Close-up of the polished heart" },
+        { x: 0.25, y: 0.4, zoom: 2.6, alt: "Close-up of the paperclip chain" },
+      ],
+    ),
+    stockQuantity: 0,
+  },
+  {
+    slug: "charm-bracelets-gold",
+    name: "Charm bracelets, set of three",
+    categorySlug: "bracelets",
+    department: "women",
+    material: "Gold vermeil",
+    priceCents: 64000,
+    description:
+      "Three fine chains to wear together or apart: one with coin charms, one with faceted beads and one with small star charms.",
+    details: [
+      "18k gold vermeil on sterling silver",
+      "Each 16 cm with a 3 cm extender",
+      "Spring-ring clasps",
+      "Made in Italy",
+    ],
+    care: goldCare,
+    images: gallery(
+      "1778000000743-87e855360c51",
+      "Three fine gold charm bracelets laid side by side on white",
+      [
+        { x: 0.5, y: 0.35, zoom: 2.4, alt: "Close-up of the faceted beads" },
+        { x: 0.6, y: 0.7, zoom: 2.4, alt: "Close-up of the star charms and clasp" },
+      ],
+    ),
+    stockQuantity: 10,
+    isNew: true,
+  },
+  {
+    slug: "id-bracelet-gold",
+    name: "ID bracelet",
+    categorySlug: "bracelets",
+    department: "unisex",
+    material: "18k yellow gold",
+    priceCents: 145000,
+    description:
+      "A curved, polished plate on a fine double-curb chain. Wear it alone or stacked with finer chains.",
+    details: [
+      "18k yellow gold",
+      "Plate 3.2 × 0.9 cm",
+      "Double-curb chain, 18 cm",
+      "Spring-ring clasp",
+      "Made in Italy",
+    ],
+    care: goldCare,
+    images: gallery(
+      "1777999802051-f6f0296e76af",
+      "Gold ID bracelet with a polished plate draped over white silk",
+      [
+        { x: 0.45, y: 0.42, zoom: 2.4, alt: "Close-up of the polished plate" },
+        { x: 0.4, y: 0.72, zoom: 2.6, alt: "Close-up of the double-curb chain" },
+      ],
+    ),
+    stockQuantity: 10,
+  },
+  {
+    slug: "oval-link-bracelet-gold",
+    name: "Oval link bracelet",
+    categorySlug: "bracelets",
+    department: "unisex",
+    material: "Gold vermeil",
+    priceCents: 72000,
+    description:
+      "Bold oval links with a toggle clasp, the piece the rest of our link family was drawn from.",
+    details: [
+      "18k gold vermeil on sterling silver",
+      "Link 1.4 × 1.0 cm",
+      "Length 19 cm",
+      "Toggle clasp",
+      "Made in Italy",
+    ],
+    care: goldCare,
+    images: gallery(
+      "1602173574767-37ac01994b2a",
+      "Gold oval link bracelet resting on an open magazine",
+      [
+        { x: 0.55, y: 0.55, zoom: 2.2, alt: "Close-up of the oval links" },
+        { x: 0.85, y: 0.55, zoom: 2.4, alt: "Close-up of the toggle clasp" },
+      ],
+    ),
+    stockQuantity: 3,
+  },
+  {
+    slug: "tube-hoops-gold",
+    name: "Tube hoop earrings",
+    categorySlug: "earrings",
+    department: "women",
+    material: "Gold vermeil",
+    priceCents: 52000,
+    description:
+      "Chunky, hollow hoops that look weighty but wear light, with a post-and-hinge fastening.",
+    details: [
+      "18k gold vermeil on sterling silver",
+      "Diameter 2.4 cm, tube width 6 mm",
+      "Hollow construction",
+      "Sold as a pair",
+      "Made in Italy",
+    ],
+    care: goldCare,
+    images: gallery(
+      "1708220040824-b273dd0a17cc",
+      "Pair of chunky gold hoop earrings on white display steps",
+      [
+        { x: 0.38, y: 0.48, zoom: 2.6, alt: "Close-up of a hoop and its post" },
+        { x: 0.64, y: 0.55, zoom: 2.6, alt: "Close-up of the polished tube" },
+      ],
+    ),
+    stockQuantity: 10,
+    isNew: true,
+  },
+  {
+    slug: "huggie-hoops-gold",
+    name: "Huggie hoops",
+    categorySlug: "earrings",
+    department: "unisex",
+    material: "18k yellow gold",
+    priceCents: 98000,
+    description:
+      "Small, rounded hoops that sit close to the lobe, with a hinged click closure. Easy to sleep in.",
+    details: [
+      "18k yellow gold",
+      "Diameter 1.3 cm",
+      "Hinged click closure",
+      "Sold as a pair",
+      "Made in Italy",
+    ],
+    care: goldCare,
+    images: gallery(
+      "1632525230528-ec17c49bc168",
+      "Pair of small gold huggie hoops hanging from the edge of a white card",
+      [
+        { x: 0.42, y: 0.55, zoom: 2.6, alt: "Close-up of a huggie hoop" },
+        { x: 0.58, y: 0.58, zoom: 2.6, alt: "Close-up of the hinged closure" },
+      ],
+    ),
+    stockQuantity: 10,
+  },
+  {
+    slug: "pearl-studs",
+    name: "Pearl stud earrings",
+    categorySlug: "earrings",
+    department: "women",
+    material: "Freshwater pearl and gold vermeil",
+    priceCents: 42000,
+    description:
+      "Round freshwater pearls held in a small gold cup, on sterling silver posts.",
+    details: [
+      "8 mm freshwater pearls",
+      "18k gold vermeil cups, sterling silver posts",
+      "Butterfly backs",
+      "Sold as a pair",
+      "Made in Italy",
+    ],
+    care: "Put pearls on last and wipe with a soft dry cloth after wearing. Keep away from perfume and store apart from harder stones and metals.",
+    images: gallery(
+      "1623303179820-de8ec58b03dc",
+      "Pair of pearl stud earrings on a white block against pale pink silk",
+      [
+        { x: 0.5, y: 0.52, zoom: 2.8, alt: "Close-up of a pearl and its gold cup" },
+        { x: 0.72, y: 0.54, zoom: 2.8, alt: "Close-up of the second pearl stud" },
+      ],
+    ),
+    stockQuantity: 10,
+  },
+  {
+    slug: "hammered-huggies-silver",
+    name: "Hammered huggie hoops",
+    categorySlug: "earrings",
+    department: "men",
+    material: "Sterling silver",
+    priceCents: 34000,
+    description:
+      "Compact hoops with a hand-hammered surface that catches the light, finished with a hinged click closure.",
+    details: [
+      "925 sterling silver",
+      "Diameter 1.2 cm",
+      "Hand-hammered finish",
+      "Sold as a pair",
+      "Made in Italy",
+    ],
+    care: silverCare,
+    images: gallery(
+      "1765464281313-b3844388b316",
+      "Pair of hammered sterling silver huggie hoops on white",
+      [
+        { x: 0.5, y: 0.45, zoom: 2.6, alt: "Close-up of the hammered surface" },
+        { x: 0.5, y: 0.65, zoom: 2.6, alt: "Close-up of the hinged closure" },
+      ],
+    ),
+    stockQuantity: 10,
+    isNew: true,
   },
 ];
