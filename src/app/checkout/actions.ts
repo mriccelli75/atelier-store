@@ -81,6 +81,9 @@ export async function createCheckoutSession(): Promise<CheckoutSessionResult> {
         automatic_tax: { enabled: process.env.STRIPE_AUTOMATIC_TAX === "true" },
         expires_at: Math.floor(Date.now() / 1000) + 60 * 60,
         return_url: `${origin}/checkout/complete?session_id={CHECKOUT_SESSION_ID}`,
+        // Accounts with Managed Payments on by default reject our own tax and
+        // shipping settings; opt out per request. Not yet in the SDK's types.
+        ...({ managed_payments: { enabled: false } } as object),
       },
       { idempotencyKey: `checkout-${order.id}` },
     );
